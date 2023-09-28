@@ -47,7 +47,7 @@ const Game = () => {
                 <i className='lni lni-calendar mr-1'></i>
                 {new Date(getCurrentMovie().release_date).toLocaleDateString(
                   'en-US',
-                  { dateStyle: 'long' }
+                  { month: 'short', year: 'numeric' }
                 )}
               </div>
               <div className='rounded-sm p-2 bg-green-100 text-green-700'>
