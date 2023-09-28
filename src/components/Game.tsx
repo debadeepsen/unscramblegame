@@ -1,13 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import topMovies from '@/data/topMovies.json'
+import { Movie } from '@/utils/types'
+import { scramble } from '@/utils/lib'
 
 const Game = () => {
-  const [movies, setMovies] = useState([])
-  const [movieIndex, setMovieIndex] = useState(null)
+  const [movies, setMovies] = useState<Movie[]>([])
+  const [movieIndex, setMovieIndex] = useState<number | null>(null)
+  const getCurrentMovie = () => movies[movieIndex]
 
   const loadMovies = async () => {
-    setMovies(topMovies)
+    setMovies(topMovies as Movie[])
   }
 
   useEffect(() => {
@@ -17,7 +20,11 @@ const Game = () => {
   return (
     <>
       <div className='flex'>
-        {movieIndex !== null && <div>{JSON.stringify(movies[movieIndex])}</div>}
+        {movieIndex !== null && (
+          <div>
+            <div className='scrambled'>{scramble(getCurrentMovie().title)}</div>
+          </div>
+        )}
         <div>
           <div>
             <h2 className='ml-5'>Rules</h2>
@@ -42,8 +49,6 @@ const Game = () => {
           onClick={() => {
             const newIndex = movieIndex === null ? 0 : movieIndex + 1
             setMovieIndex(newIndex)
-            const currentMovie = movies[movieIndex]
-            console.log(movies, movies[0])
           }}
         >
           {movieIndex === null ? 'Begin Game' : 'Next Movie'}
