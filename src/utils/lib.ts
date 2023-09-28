@@ -10,7 +10,5 @@ export const scramble = (movieName: string) => {
 
   spaceIndices.forEach((s) => scrambled.splice(s, 0, '  '))
 
-  // scrambled.splice(3,0,'*')
-
-  return scrambled
+  return scrambled.join('')
 }
