@@ -16,7 +16,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(0deg, #ddd, #eee5);
+  background: linear-gradient(0deg, #ccc, #ddd);
   width: 100vw;
   min-height: 100vh;
 }
@@ -58,4 +58,9 @@ button:hover {
   padding: 36px;
   background-color: #3697f733;
   border-radius: 6px;
+}
+
+.reveal {
+  background: linear-gradient(-10deg, #13a16f, #40cb1d);
+
 }

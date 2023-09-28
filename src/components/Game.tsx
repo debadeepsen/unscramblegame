@@ -75,6 +75,12 @@ const Game = () => {
         </div>
       </div>
       <div className='flex justify-center my-4'>
+        {movieIndex !== null && (
+          <button className='reveal mr-2' onClick={() => setShow(true)}>
+            <i className='lni lni-eye mr-2'></i>
+            Reveal
+          </button>
+        )}
         <button
           onClick={() => {
             setShow(false)
