@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import topMovies from '@/data/topMovies.json'
 import { Movie } from '@/utils/types'
 import { scramble } from '@/utils/lib'
+import GameOver from './GameOver'
 
 const Game = () => {
   const [movies, setMovies] = useState<Movie[]>([])
   const [movieIndex, setMovieIndex] = useState<number | null>(null)
   const [show, setShow] = useState(false)
+  const [gameOver, setGameOver] = useState(false)
   const getCurrentMovie = () => movies[movieIndex]
   const [scrambledMovie, setScrambledMovie] = useState('')
 
@@ -22,9 +24,9 @@ const Game = () => {
   return (
     <>
       <div>
-        {movieIndex !== null && (
+        {movieIndex !== null && !!getCurrentMovie() && (
           <div className='flex flex-col justify-center items-center m-10'>
-            <h4 className='-mt-2'>Movie {movieIndex + 1}</h4>
+            <h4 className='-mt-1 mb-[10px]'>Movie {movieIndex + 1}</h4>
             <div className='flex'>
               <div className='scrambled'>
                 {!show ? scrambledMovie : getCurrentMovie().title}
@@ -83,6 +85,11 @@ const Game = () => {
         )}
         <button
           onClick={() => {
+            console.log(movieIndex)
+            if (movieIndex !== null && movieIndex === topMovies.length - 1) {
+              setGameOver(true)
+              return
+            }
             setShow(false)
             const newIndex = movieIndex === null ? 0 : movieIndex + 1
             setMovieIndex(newIndex)
@@ -96,6 +103,7 @@ const Game = () => {
           )}
         </button>
       </div>
+      {gameOver && <GameOver />}
     </>
   )
 }

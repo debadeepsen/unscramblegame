@@ -19,6 +19,7 @@ body {
   background: linear-gradient(0deg, #ccc, #ddd);
   width: 100vw;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 main {
@@ -29,8 +30,10 @@ main {
 }
 
 h1 {
-  color: dodgerblue;
+  color: #1e90ff;
   font-weight: 300;
+  font-size: 64px;
+  text-shadow: 2px 2px #1e90ff33;
 }
 
 button {
