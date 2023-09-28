@@ -4,14 +4,10 @@ import topMovies from '@/data/topMovies.json'
 
 const Game = () => {
   const [movies, setMovies] = useState([])
-  const [currentMovie, setCurrentMovie] = useState({})
+  const [movieIndex, setMovieIndex] = useState(null)
 
   const loadMovies = async () => {
     setMovies(topMovies)
-  }
-
-  const getCurrentMovie = () => {
-    return currentMovie
   }
 
   useEffect(() => {
@@ -21,7 +17,7 @@ const Game = () => {
   return (
     <>
       <div className='flex'>
-        <div></div>
+        {movieIndex !== null && <div>{JSON.stringify(movies[movieIndex])}</div>}
         <div>
           <div>
             <h2 className='ml-5'>Rules</h2>
@@ -38,15 +34,20 @@ const Game = () => {
                 second part will be considered
               </li>
             </ul>
-            <button
-              onClick={() => {
-                document.write(getCurrentMovie())
-              }}
-            >
-              Begin Game
-            </button>
           </div>
         </div>
+      </div>
+      <div className='flex justify-center my-4'>
+        <button
+          onClick={() => {
+            const newIndex = movieIndex === null ? 0 : movieIndex + 1
+            setMovieIndex(newIndex)
+            const currentMovie = movies[movieIndex]
+            console.log(movies, movies[0])
+          }}
+        >
+          {movieIndex === null ? 'Begin Game' : 'Next Movie'}
+        </button>
       </div>
     </>
   )

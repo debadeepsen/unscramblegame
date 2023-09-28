@@ -39,4 +39,11 @@ button {
   font-size: 24px;
   padding: 10px 20px;
   border: none;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #014f9d;
+  transform: scale(1.1);
 }
